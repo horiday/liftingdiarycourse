@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { format, parseISO } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -17,6 +17,14 @@ import {
 import { createWorkoutAction } from "./actions";
 
 export default function NewWorkoutPage() {
+  return (
+    <Suspense>
+      <NewWorkoutForm />
+    </Suspense>
+  );
+}
+
+function NewWorkoutForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [name, setName] = useState("");
